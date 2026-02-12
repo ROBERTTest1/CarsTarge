@@ -3,35 +3,50 @@
     ViewData["Title"] = $"{Model.Brand} {Model.Model}";
 }
 
-<h1>@Model.Brand @Model.Model</h1>
+<div class="mb-4">
+    <h1 class="mb-1">@Model.Brand @Model.Model</h1>
+    <p class="text-muted mb-0">Car details</p>
+</div>
 
-<dl class="row">
-    <dt class="col-sm-3">Brand</dt>
-    <dd class="col-sm-9">@Model.Brand</dd>
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body p-4">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted fw-normal">Brand</dt>
+                    <dd class="col-sm-8 fw-medium">@Model.Brand</dd>
 
-    <dt class="col-sm-3">Model</dt>
-    <dd class="col-sm-9">@Model.Model</dd>
+                    <dt class="col-sm-4 text-muted fw-normal">Model</dt>
+                    <dd class="col-sm-8 fw-medium">@Model.Model</dd>
 
-    <dt class="col-sm-3">Year</dt>
-    <dd class="col-sm-9">@Model.Year</dd>
+                    <dt class="col-sm-4 text-muted fw-normal">Year</dt>
+                    <dd class="col-sm-8 fw-medium">@Model.Year</dd>
 
-    <dt class="col-sm-3">Price</dt>
-    <dd class="col-sm-9">@Model.Price.ToString("N2")</dd>
+                    <dt class="col-sm-4 text-muted fw-normal">Price</dt>
+                    <dd class="col-sm-8 fw-medium">@Model.Price.ToString("N2") €</dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted fw-normal">Color</dt>
+                    <dd class="col-sm-8"><span class="badge bg-secondary fs-6">@Model.Color</span></dd>
 
-    <dt class="col-sm-3">Color</dt>
-    <dd class="col-sm-9">@Model.Color</dd>
+                    <dt class="col-sm-4 text-muted fw-normal">Notes</dt>
+                    <dd class="col-sm-8">@(Model.Notes ?? "—")</dd>
 
-    <dt class="col-sm-3">Notes</dt>
-    <dd class="col-sm-9">@(Model.Notes ?? "-")</dd>
+                    <dt class="col-sm-4 text-muted fw-normal">Created</dt>
+                    <dd class="col-sm-8 small">@Model.CreatedAt.ToString("g")</dd>
 
-    <dt class="col-sm-3">Created</dt>
-    <dd class="col-sm-9">@Model.CreatedAt</dd>
-
-    <dt class="col-sm-3">Modified</dt>
-    <dd class="col-sm-9">@Model.ModifiedAt</dd>
-</dl>
-
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                    <dt class="col-sm-4 text-muted fw-normal">Modified</dt>
+                    <dd class="col-sm-8 small">@Model.ModifiedAt.ToString("g")</dd>
+                </dl>
+            </div>
+        </div>
+        <hr class="my-4" />
+        <div class="d-flex gap-2 flex-wrap">
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </div>
 </div>

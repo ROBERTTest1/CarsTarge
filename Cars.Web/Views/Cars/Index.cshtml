@@ -30,7 +30,11 @@
                 <td>@car.Price.ToString("N2")</td>
                 <td>@car.Color</td>
                 <td>@(car.Notes ?? "-")</td>
-                <td><a asp-action="Details" asp-route-id="@car.Id">Details</a></td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@car.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@car.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@car.Id">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

@@ -43,5 +43,43 @@ namespace Cars.Web.Controllers
             }
             return View(car);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var car = await _carServices.GetCarByIdAsync(id);
+            if (car == null)
+                return NotFound();
+            return View(car);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Car car)
+        {
+            if (id != car.Id)
+                return NotFound();
+            if (ModelState.IsValid)
+            {
+                await _carServices.UpdateCarAsync(car);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(car);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var car = await _carServices.GetCarByIdAsync(id);
+            if (car == null)
+                return NotFound();
+            return View(car);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _carServices.DeleteCarAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -1,0 +1,40 @@
+@model IEnumerable<Car>
+@{
+    ViewData["Title"] = "Cars";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Cars</h1>
+    <a asp-action="Create" class="btn btn-primary">Add Car</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Price</th>
+            <th>Color</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>@car.Year</td>
+                <td>@car.Price.ToString("N2")</td>
+                <td>@car.Color</td>
+                <td>@(car.Notes ?? "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">No cars yet. <a asp-action="Create">Add your first car</a>.</p>
+}

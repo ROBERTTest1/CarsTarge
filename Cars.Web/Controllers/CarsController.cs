@@ -24,6 +24,14 @@ namespace Cars.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var car = await _carServices.GetCarByIdAsync(id);
+            if (car == null)
+                return NotFound();
+            return View(car);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Car car)

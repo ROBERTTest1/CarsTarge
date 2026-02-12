@@ -1,0 +1,36 @@
+@model Car
+@{
+    ViewData["Title"] = $"{Model.Brand} {Model.Model}";
+}
+
+<h1>@Model.Brand @Model.Model</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Brand</dt>
+    <dd class="col-sm-9">@Model.Brand</dd>
+
+    <dt class="col-sm-3">Model</dt>
+    <dd class="col-sm-9">@Model.Model</dd>
+
+    <dt class="col-sm-3">Year</dt>
+    <dd class="col-sm-9">@Model.Year</dd>
+
+    <dt class="col-sm-3">Price</dt>
+    <dd class="col-sm-9">@Model.Price.ToString("N2")</dd>
+
+    <dt class="col-sm-3">Color</dt>
+    <dd class="col-sm-9">@Model.Color</dd>
+
+    <dt class="col-sm-3">Notes</dt>
+    <dd class="col-sm-9">@(Model.Notes ?? "-")</dd>
+
+    <dt class="col-sm-3">Created</dt>
+    <dd class="col-sm-9">@Model.CreatedAt</dd>
+
+    <dt class="col-sm-3">Modified</dt>
+    <dd class="col-sm-9">@Model.ModifiedAt</dd>
+</dl>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
